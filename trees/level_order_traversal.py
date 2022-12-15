@@ -27,32 +27,25 @@ def get_max_height(node: bt.BinaryTreeNode) -> int:
         return right_height + 1
 
 
-result = ""
-
 # get nodes at a specific level
-def get_h_level_order(root, level, result):
-    if result is None:
-        result = ""
-
+def get_h_level_order(root, level):
     if root is None:
         return None
 
     if level == 0:
         # using `end=" "` will help keep print to a single line
-        # print(root.data, end=" ")
-        result += str(root.data)
-        return result
+        print(root.data, end=" ")
 
-    get_h_level_order(root.left, level-1, result)
-    get_h_level_order(root.right, level-1, result)
+    get_h_level_order(root.left, level-1)
+    get_h_level_order(root.right, level-1)
 
 
 def level_order_traversal(root: bt.BinaryTreeNode):
     height = get_max_height(root)
+    result = ""
     for level in range(height+1):
-        result = get_h_level_order(root, level, None)
-        print(result)
-        # print()
+        get_h_level_order(root, level)
+        print()
 
 
 def level_order_traversal_2(root: bt.BinaryTreeNode) -> str:
