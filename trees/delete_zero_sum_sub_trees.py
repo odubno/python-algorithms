@@ -36,6 +36,7 @@ def main():
     root = bt.create_BST(data)
     delete_zero_sum_subtree(root)
     assert bt.bst_to_list(root) == [7, 9]
+    
 
 
 main()
