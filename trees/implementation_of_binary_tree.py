@@ -26,14 +26,14 @@ def insert(root: Optional[BinaryTreeNode], data: int) -> BinaryTreeNode:
     # traverse the root back up
     parent = None
     temp_parent = root
-    while temp_parent is not None:
+    while temp_parent:
         parent = temp_parent
         if temp_parent.data > data:
             temp_parent = temp_parent.left
         else:
             temp_parent = temp_parent.right
 
-    if parent.data > new_parent.data:
+    if parent.data > data:
         parent.left = new_parent
     else:
         parent.right = new_parent
@@ -94,7 +94,7 @@ def create_binary_tree(count):
 
 
 def create_random_BST(count):
-    root = None;
+    root = None
     for i in range(1, count):
         root = insert(root, random.randrange(200, 300))
     return root
