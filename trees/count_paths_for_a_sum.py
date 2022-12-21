@@ -44,6 +44,17 @@ def count_paths_recursive(currentNode, S, currentPath):
     return pathCount
 
 
+def get_path_count(current_nodes, desired_node_sum, path_count):
+    for index in range(len(current_nodes)):
+        temp_sum = sum(current_nodes[index:])
+        if temp_sum == desired_node_sum:
+            path_count += 1
+        if temp_sum < desired_node_sum:
+            # break early, since sum is unlikely to be close to desired sum as we keep removing numbers
+            break
+    return path_count
+
+
 def count_paths_rec(root, desired_node_sum, current_nodes=None):
     if not root:
         return 0
@@ -56,9 +67,9 @@ def count_paths_rec(root, desired_node_sum, current_nodes=None):
     if sum(current_nodes) == desired_node_sum:
         path_count += 1
     elif sum(current_nodes) > desired_node_sum:
-        # if sum of current_nodes is greater check the sum by removing top most value
-        if sum(current_nodes[1:]) == desired_node_sum:
-            path_count += 1
+        # if sum of current_nodes is greater check the sum by removing top most values
+        # check sum of all nodes until sum is below desired_node_sum
+        path_count += get_path_count(current_nodes, desired_node_sum, path_count)
 
     # start with left side
     path_count += count_paths_rec(root.left, desired_node_sum, current_nodes)
@@ -107,6 +118,19 @@ def main():
     root2.right.left = TreeNode(2)
     root2.right.right = TreeNode(3)
     print("Tree has paths: " + str(count_paths(root2, 12)))
+
+    root3 = TreeNode(1)
+    root3.left = TreeNode(7)
+    root3.right = TreeNode(9)
+    root3.left.left = TreeNode(6)
+    root3.left.right = TreeNode(5)
+    root3.left.left.left = TreeNode(6)
+    root3.left.left.right = TreeNode(3)
+    root3.right.left = TreeNode(2)
+    root3.right.right = TreeNode(3)
+    root3.right.left.left = TreeNode(2)
+
+    assert count_paths(root3, 12) == 4
 
 
 
