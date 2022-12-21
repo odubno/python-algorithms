@@ -99,7 +99,7 @@ class MedianOfAStreamBisect:
 
 
 def main():
-    median_of_a_stream = MedianOfAStream()
+    median_of_a_stream = MedianOfAStreamBisect()
     median_of_a_stream.insert_num(3)
     median_of_a_stream.insert_num(1)
     assert median_of_a_stream.find_median() == 2
