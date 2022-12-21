@@ -7,6 +7,8 @@ capital after selecting the most profitable projects.
 
 We can start an investment project only when we have the required capital.
 Once a project is selected, we can assume that its profit has become our capital.
+
+revisit : nail down heaps
 """
 
 from typing import List
