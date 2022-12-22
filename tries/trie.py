@@ -15,7 +15,7 @@ class TrieNode:
         self.char = char
 
 
-class Trie:
+class Trie(TrieNode):
 
     """
     1. use a dictionary of children to track common prefixes
@@ -26,6 +26,7 @@ class Trie:
     """
 
     def __init__(self):
+        super().__init__()
         self.root = TrieNode()
 
     def insert(self, word: str) -> bool:
@@ -115,6 +116,10 @@ class Trie:
         return delete_node
 
     def delete(self, word) -> bool:
+        """
+        Time: length of the word is h , the worst-case time complexity is O(h)
+        Space: O(w) is the number of words
+        """
         if not word:
             return False
         return self.delete_recursive(word, self.root)
@@ -147,5 +152,3 @@ def main():
     assert t.search('there'), "'there' should still be present after 'the' is delete"
     print('l')
 
-
-main()
