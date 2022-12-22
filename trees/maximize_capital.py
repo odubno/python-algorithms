@@ -51,7 +51,7 @@ def find_maximum_capital(
     3. continue using total_capital to check if next project_capital is present in
         project_profits map
         1. if nothing is present return the total_capital
-    Time: O(C + P) | Space: O(C)
+    Time: O(C^2 + P) | Space: O(C)
     """
     project_map = get_project_map(project_capitals, project_profits)
     total_capital = 0
