@@ -22,7 +22,7 @@ from typing import List
 # Breadth First Traversal of Graph g from source vertex
 
 
-def bfs_traversal_first(g: Graph, source: int) -> str:
+def bfs_traversal_basic(g: Graph, source: int) -> str:
     """
     :param g: directed graph
     :param source: the starting vertex number (source)
@@ -43,7 +43,6 @@ def bfs_traversal_first(g: Graph, source: int) -> str:
         while temp:
             result += str(temp.data)
             temp = temp.next_element
-
     return result
 
 
@@ -107,7 +106,7 @@ def main():
     bfs_traversal_result = bfs_traversal(g, 0)
     assert bfs_traversal_result in ('02143', '02134', '01234', '01243')
 
-    bfs_traversal_result_first = bfs_traversal_first(g, 0)
+    bfs_traversal_result_first = bfs_traversal_basic(g, 0)
     assert bfs_traversal_result_first in ('02143', '02134', '01234', '01243')
     # g.print_graph()
 
