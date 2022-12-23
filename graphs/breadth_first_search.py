@@ -34,6 +34,8 @@ def bfs_traversal_basic(g: Graph, source: int) -> str:
     2. create a queue, append the root
     3. while queue has items keep searching
     4. continue to append w/e items are available
+
+    Time: Since this algorithm traverses the whole graph once, its time complexity is O(V + E).
     """
     result = ""
     num_of_vertices = g.vertices
