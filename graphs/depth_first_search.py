@@ -14,6 +14,34 @@ from stack import MyStack
 from collections import deque
 
 
+def dfs_traversal_mine(g, source, visited=None, result=None):
+    if visited is None:
+        visited = [False] * g.vertices
+
+    if result is None:
+        result = []
+
+    if all(visited):
+        return result
+
+    stack = deque()
+    stack.append(source)
+    result.append(source)
+    visited[source] = True
+
+    while stack:
+        temp_node_index = stack.pop()
+        temp_node = g.array[temp_node_index].get_head()
+        while temp_node:
+            if not visited[temp_node.data]:
+                result.append(temp_node.data)
+                stack.append(temp_node.data)
+                visited[temp_node.data] = True
+            temp_node = temp_node.next_element
+    dfs_traversal_mine(g, source+1, visited, result)
+    return result
+
+
 def dfs_traversal_recursive(g, source, visited=None):
     """
     1. recursively visit child nodes of parents
@@ -126,9 +154,12 @@ def main():
     g.add_edge(2, 5)
     g.add_edge(3, 6)
 
+    m = dfs_traversal_mine(g, 0)
+
     g.print_graph()
 
     dfs_rec = dfs_traversal_recursive(g, 0)
+
     assert dfs_rec in ('0124536', '0136254')
 
     dfs_traversal_result = dfs_traversal(g, 0)

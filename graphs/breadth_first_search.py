@@ -21,6 +21,26 @@ from typing import List
 # class Node => data, next_element
 # Breadth First Traversal of Graph g from source vertex
 
+from collections import deque
+
+
+def bfs_traversal_mine(g: Graph, source: int) -> List:
+
+    visited = [False] * g.vertices
+    result = [source]
+    visited[source] = True
+
+    for node_index in range(g.vertices):
+        temp_node = g.array[node_index].get_head()
+        while temp_node:
+            if visited[temp_node.data]:
+                temp_node = None
+                continue
+            visited[temp_node.data] = True
+            result.append(temp_node.data)
+            temp_node = temp_node.next_element
+    return result
+
 
 def bfs_traversal_basic(g: Graph, source: int) -> str:
     """
@@ -105,6 +125,7 @@ def main():
     g.add_edge(1, 3)
     g.add_edge(1, 4)
 
+    m = bfs_traversal_mine(g, 0)
     bfs_traversal_result = bfs_traversal(g, 0)
     assert bfs_traversal_result in ('02143', '02134', '01234', '01243')
 
