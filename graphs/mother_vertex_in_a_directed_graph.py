@@ -17,6 +17,8 @@ def find_mother_vertex(g):
     3. return vertex with highest counter
     4. if there is a duplicate counter
         1. get the highest count and only return the vertices with the top counter
+    Time: Since we run DFS on each node, time complexity would be O(V(V + E))
+    Space: O(V); V for the number of vertices we store while we count
     """
     for i in range(g.vertices):
         num_of_vertices_reached = perform_DFS(g, i)
@@ -44,6 +46,9 @@ def perform_DFS(g, source):
                 vertices_reached += 1
             temp = temp.next_element
     return vertices_reached + 1
+
+
+
 
 
 
