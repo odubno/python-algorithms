@@ -19,7 +19,6 @@ def find_educative_min(g: Graph, source: int, destination: int) -> int:
         curr_node = queue.pop()
         temp_node = g.array[curr_node].get_head()
         while temp_node:
-            print(temp_node.data)
             if not visited[temp_node.data] or temp_node.data == destination:
                 visited[temp_node.data] = True
                 queue.append(temp_node.data)
@@ -29,6 +28,7 @@ def find_educative_min(g: Graph, source: int, destination: int) -> int:
                 # use the path of the current node and extend it to the temporary node
                 # temp node could be thought of as the next node
                 distance[temp_node.data] = distance[curr_node] + 1
+
                 if temp_node.data == destination:
                     return distance[destination]
             temp_node = temp_node.next_element
